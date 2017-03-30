@@ -206,23 +206,21 @@ public class DBPerson implements IFDBPer {
     }
 
     //method to build an employee object
-    private Person buildEmployee(ResultSet results) {
-        Person empObj = new Person();
-        try { // the columns from the table emplayee  are used
-            empObj.setFname(results.getString("fname"));
-            empObj.setMinit(results.getString("minit"));
-            empObj.setLname(results.getString("lname"));
-            empObj.setID(results.getString("ID"));
-            empObj.setBdate(results.getString("bdate"));
-            empObj.setAddress(results.getString("address"));
-            empObj.setSex(results.getString("sex"));
-            empObj.setSalary(results.getDouble("salary"));
-            empObj.setSupervisor(new Person(results.getString("super_ID")));
-            empObj.setDepartment(new Department(results.getInt("dno")));
+    private Person buildPerson(ResultSet results) {
+        Person persObj = new Person();
+        try { // the columns from the table perslayee  are used
+            persObj.setF_name()(results.getString("first_name"));
+            persObj.setL_name(results.getString("last_name"));
+            persObj.setCPR(results.getString("CPR"));
+            persObj.setId(results.getString("ID"));
+            persObj.setZip(results.getString("ZipCode"));
+            persObj.setAddress(results.getString("address"));
+            persObj.setFunction(results.getString("function_name"));
+
         } catch (Exception e) {
             System.out.println("error in building the person object");
         }
-        return empObj;
+        return persObj;
     }
 
     @Override

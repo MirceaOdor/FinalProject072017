@@ -6,7 +6,7 @@ package ModelLayer;
 public class Product {
 
     private String name;
-    private String bacrode;
+    private String barcode;
     private String type;
     private int salePrice;
     private int rentPrice;
@@ -14,15 +14,15 @@ public class Product {
     private int minStock;
     private int stock;
 
-    public Product(String name, String bacrode, int stock) {
+    public Product(String name, String barcode, int stock) {
         this.name = name;
-        this.bacrode = bacrode;
+        this.barcode = barcode;
         this.stock = stock;
     }
 
-    public Product(String name, String bacrode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) {
+    public Product(String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) {
         this.name = name;
-        this.bacrode = bacrode;
+        this.barcode = barcode;
         this.type = type;
         this.salePrice = salePrice;
         this.rentPrice = rentPrice;
@@ -40,11 +40,11 @@ public class Product {
     }
 
     public String getBacrode() {
-        return bacrode;
+        return barcode;
     }
 
-    public void setBacrode(String bacrode) {
-        this.bacrode = bacrode;
+    public void setBacrode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getType() {
