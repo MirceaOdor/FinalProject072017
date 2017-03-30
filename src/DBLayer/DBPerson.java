@@ -21,27 +21,27 @@ public abstract class DBPerson implements IFDBPer {
     //Implements the methods from the interface
     // get all persons
     public ArrayList<Person> getAllPersons(boolean seeAssociation) {
-        return miscWhere("", retriveAssociation);
+        return miscWhere("", seeAssociation);
     }
 
     //get one employee having the ID
-    public Person findPerson(String empID, boolean retriveAssociation) {
+    public Person findPerson(String empID, boolean seeAssociation) {
         String wClause = "  ID = '" + empID + "'";
-        return singleWhere(wClause, retriveAssociation);
+        return singleWhere(wClause, seeAssociation);
     }
 
     //find one employee having the fname
-    public Person searchPersonFname(String attValue, boolean retriveAssociation) {
+    public Person searchPersonFname(String attValue, boolean seeAssociation) {
         String wClause = "fname like '%" + attValue + "%'";
         System.out.println("SearchEmployye " + wClause);
-        return singleWhere(wClause, retriveAssociation);
+        return singleWhere(wClause, seeAssociation);
     }
 
     //find one employee having the lname
-    public Person searchPersonLname(String attValue, boolean retriveAssociation) {
+    public Person searchPersonLname(String attValue, boolean seeAssociation) {
         String wClause = "lname = '" + attValue + "'";
         System.out.println("SearchEmployye " + wClause);
-        return singleWhere(wClause, retriveAssociation);
+        return singleWhere(wClause, seeAssociation);
     }
 
     //insert a new employee
