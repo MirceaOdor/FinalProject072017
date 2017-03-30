@@ -6,15 +6,16 @@ package DBLayer;
 public class DBConnection {
 
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:sqlserver://kraka.ucn.dk:1433;databaseName=dmaj0916_197290";
-
-    //  Database credentials
-    static final String USER = "dmaj0916_197290";
-    static final String PASS = "Password1!";
-
-
-
+    public static void main(String[] args) throws Throwable {
+        Connection conn = null;
+        Properties connectionProps = new Properties();
+        connectionProps.put("user", "dmaj0916_197290");
+        connectionProps.put("password", "Password1!");
+        conn = DriverManager.getConnection("jjdbc:sqlserver://kraka.ucn.dk:1433;databaseName=dmaj0916_197290", connectionProps);
+        printAllMembers(conn);
+        printAllDogs(conn);
+        conn.close();
+    }
 
 
 
