@@ -173,7 +173,7 @@ public abstract class DBPerson implements IFDBPer {
 
     //method to build an employee object
     private Person buildPerson(ResultSet results) {
-        Person persObj = new Person();
+        Person persObj =null;
         try { // the columns from the table perslayee  are used
             persObj.setId(results.getString("ID"));
             persObj.setF_name((results.getString("first_name"));
