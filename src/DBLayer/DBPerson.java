@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Alexander on 3/30/2017.
  */
 
-public class DBPerson implements IFDBPer {
+public abstract class DBPerson implements IFDBPer {
     private Connection con;
 
     /**
@@ -46,21 +46,24 @@ public class DBPerson implements IFDBPer {
 
     //insert a new employee
     @Override
-    public int insertPerson(Person emp) throws Exception {  //call to get the next ID number
-        int nextID = GetMax.getMaxId("Select max(ID) from person");
-        nextID = nextID + 1;
-        System.out.println("next ID = " + nextID);
+    public int insertPerson(Person pers) throws Exception {  //call to get the next ID number
 
-        int rc = -1;
-        String query = "INSERT INTO Person(fname, lname, ID,super_ID,dno)  VALUES('" +
-                emp.getFname() + "','" +
-                emp.getLname() + "','" +
-                nextID + "','" +
-                emp.getSupervisor().getID() + "',5)";
+        int rc=-1;
+        String query = "INSERT INTO Person(first_name, last_name, ID, CPR, address, phoneNumber, City, ZipCode, function_name)  VALUES('" +
+                pers.getF_name() + "','" +
+                pers.getL_name() + "','" +
+                pers.getId() + " ','" +
+                pers.getCPR() + " ','"  +
+                pers.getAddress() + " ','"  +
+                pers.getPhNr() + " ','"  +
+                pers.getCity() + " ','"  +
+                pers.getZip() + " ',''"  +
+                pers.getFunction() ;
+
 
 
         System.out.println("insert : " + query);
-        try { // insert new employee +  dependent
+        try { // insert new person +  dependent
             Statement stmt = con.createStatement();
             stmt.setQueryTimeout(5);
             rc = stmt.executeUpdate(query);
@@ -121,44 +124,7 @@ public class DBPerson implements IFDBPer {
     }
 
     //private methods
-    //miscWere is used whenever we want to select more than one employee
 
-
-    private ArrayList<Person> miscWhere(String wClause, boolean retrieveAssociation) {
-        ResultSet results;
-        ArrayList<Person> list = new ArrayList<Person>();
-
-        String query = buildQuery(wClause);
-
-        try { // read the employee from the database
-            Statement stmt = con.createStatement();
-            stmt.setQueryTimeout(5);
-            results = stmt.executeQuery(query);
-
-
-            while (results.next()) {
-                Person empObj = new Person();
-                empObj = buildEmployee(results);
-                list.add(empObj);
-            }//end while
-            stmt.close();
-            if (retrieveAssociation) {   //The supervisor and department is to be build as well
-                for (Person empObj : list) {
-                    String superID = empObj.getSupervisor().getID();
-                    Person superEmp = singleWhere(" ID = '" + superID + "'", false);
-                    empObj.setSupervisor(superEmp);
-                    System.out.println("Supervisor is seleceted");
-                    // here the department has to be selected as well
-                }
-            }//end if
-
-        }//slut try
-        catch (Exception e) {
-            System.out.println("Query exception - select: " + e);
-            e.printStackTrace();
-        }
-        return list;
-    }
 
     //Singlewhere is used when we only select one employee
     private Person singleWhere(String wClause, boolean retrieveAssociation) {
@@ -197,7 +163,7 @@ public class DBPerson implements IFDBPer {
 
     //method to build the query
     private String buildQuery(String wClause) {
-        String query = "SELECT fname, minit,lname,ID, address, bdate,sex, salary, super_ID,dno  FROM employee";
+        String query = "SELECT ID, first_name, last_name, CPR, address, phoneNumber,City, ZipCode, function_name, dno  FROM Person";
 
         if (wClause.length() > 0)
             query = query + " WHERE " + wClause;
@@ -209,11 +175,11 @@ public class DBPerson implements IFDBPer {
     private Person buildPerson(ResultSet results) {
         Person persObj = new Person();
         try { // the columns from the table perslayee  are used
-            persObj.setF_name()(results.getString("first_name"));
-            persObj.setL_name(results.getString("last_name"));
-            persObj.setCPR(results.getString("CPR"));
             persObj.setId(results.getString("ID"));
-            persObj.setZip(results.getString("ZipCode"));
+            persObj.setF_name((results.getString("first_name"));
+            persObj.setL_name(results.getString("last_name"));
+            persObj.setCPR(results.getInt("CPR"));
+            persObj.setZip(results.getInt("ZipCode"));
             persObj.setAddress(results.getString("address"));
             persObj.setFunction(results.getString("function_name"));
 
