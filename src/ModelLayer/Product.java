@@ -13,6 +13,7 @@ public class Product {
     private String country;
     private int minStock;
     private int stock;
+    int numar;
 
     public Product(String name, String barcode, int stock) {
         this.name = name;

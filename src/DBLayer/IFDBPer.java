@@ -2,6 +2,7 @@ package DBLayer;
 
 import ModelLayer.*;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
         public Person searchEmployeeLname(String l_name, boolean seeAssociation);
 
-        //insert a new people
+        //insert a new person
         public int insertpeople(Person per) throws Exception;
 
         //update information about an people
