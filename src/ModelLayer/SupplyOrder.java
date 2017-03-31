@@ -12,6 +12,10 @@ import java.util.*;
         private Date dlvDate;
         private String sID;
 
+        public SupplyOrder(){
+
+        }
+
         public SupplyOrder(String id, String prodType, double qty, Date date, Date dlvDate, String sID) {
             this.id = id;
             this.prodType = prodType;
