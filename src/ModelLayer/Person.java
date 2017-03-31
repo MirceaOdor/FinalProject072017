@@ -21,6 +21,7 @@ public class Person {
       this.function = function;
       */
 
+    public Person(){};
 
     public Person(String id, String f_name, String l_name, int CPR, String address, String phNr, String city, int zip, String function) {
         this.id = id;
