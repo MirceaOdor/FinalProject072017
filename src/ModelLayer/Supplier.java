@@ -8,6 +8,10 @@ public class Supplier {
     private String Name;
     private String CVR;
 
+    public Supplier(){
+
+    }
+
     public Supplier(String ID, String name, String CVR) {
         this.ID = ID;
         Name = name;
