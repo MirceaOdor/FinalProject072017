@@ -16,6 +16,10 @@ public class RentOrder {
     private String PersonalID;
 
 
+    public RentOrder(){
+
+    }
+
     public RentOrder(String id, String barcode, int quantity, Date start_Day, int duration, String personalID) {
         Id = id;
         Barcode = barcode;

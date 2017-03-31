@@ -23,7 +23,7 @@ public class PersonDB implements PersonDBIF {
 
     @Override
     public Person create(String id, String f_name, String l_name, int CPR, String address, String phNr, String city, int zip, String function) throws SQLException {
-        Person p = new Person(id,CPR,function);
+        Person p = new Person(id, f_name, l_name, CPR, address, phNr, city, zip, function);
 
         String sql = String.format("Insert into Person (id,f_name,l_name,CPR,address,phNr,city,zip,function) VALUES"
                 +  "('%s', '%s', '%s' )", id,f_name,l_name,CPR,address,phNr,city,zip,function);
@@ -39,9 +39,9 @@ public class PersonDB implements PersonDBIF {
 
     return p;
 }
-@Override
-public Person update(int id,int index,String object) throws SQLException {
-    Person p = new Person(); //asking for constructor :')
+    @Override
+    public Person update(String id, String f_name, String l_name, int CPR, String address, String phNr, String city, int zip, String function,int index,String object) throws SQLException {
+    Person p = new Person(id, f_name, l_name, CPR, address, phNr, city, zip, function); //asking for constructor :')
     String sql;
     switch (index){
         case 1:
@@ -170,7 +170,8 @@ public Person update(int id,int index,String object) throws SQLException {
                 Statement stmt =DBConnection.getInstance().getDBcon().createStatement()) {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
-                p = buildObjects(rs);
+                ArrayList<Person> people = buildObjects(rs);
+                p=people.get(0);
             }
         }
 

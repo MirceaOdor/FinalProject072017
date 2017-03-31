@@ -11,6 +11,10 @@ public class SaleInvoice {
     private String OrderID;
     private Date Pay_Day;
 
+    public SaleInvoice(){
+
+    }
+
     public SaleInvoice(String id, double sum, String orderID, Date pay_Day) {
         Id = id;
         Sum = sum;
