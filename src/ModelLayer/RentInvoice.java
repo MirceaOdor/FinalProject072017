@@ -12,6 +12,10 @@ public class RentInvoice {
     private Date Pay_day;
     private int Period;
 
+    public RentInvoice(){
+
+    }
+
     public RentInvoice(String id, double sum, String rentOrderID, Date pay_day, int period) {
         Id = id;
         this.sum = sum;

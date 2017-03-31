@@ -15,10 +15,21 @@ public class Product {
     private int stock;
     int numar;
 
+    public Product(){
+
+    }
+
     public Product(String name, String barcode, int stock) {
         this.name = name;
         this.barcode = barcode;
         this.stock = stock;
+    }
+
+    public Product(String name, String barcode, String type, String country) {
+        this.name = name;
+        this.barcode = barcode;
+        this.type = type;
+        this.country = country;
     }
 
     public Product(String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) {
@@ -40,11 +51,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getBacrode() {
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBacrode(String barcode) {
+    public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
 
