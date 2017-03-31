@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Vlad Mataoanu on 29.03.2017.
  */
 public class SaleOrder {
-    private String ID;
+    private String OID;
     private String barcode;
     private int quantity;
     private String delivery_status;
@@ -15,8 +15,8 @@ public class SaleOrder {
     private double sale_promotion;
     private String persId;
 
-    public SaleOrder(String ID, String barcode, int quantity, String delivery_status, Date saleDate, Date deliveryDate, double sale_promotion, String persId) {
-        this.ID = ID;
+    public SaleOrder(String OID, String barcode, int quantity, String delivery_status, Date saleDate, Date deliveryDate, double sale_promotion, String persId) {
+        this.OID = OID;
         this.barcode = barcode;
         this.quantity = quantity;
         this.delivery_status = delivery_status;
@@ -26,12 +26,12 @@ public class SaleOrder {
         this.persId = persId;
     }
 
-    public String getID() {
-        return ID;
+    public String getOID() {
+        return OID;
     }
 
     public void setID(String ID) {
-        this.ID = ID;
+        this.OID = OID;
     }
 
     public String getBarcode() {
