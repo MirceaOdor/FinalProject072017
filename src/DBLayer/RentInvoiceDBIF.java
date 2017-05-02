@@ -1,7 +1,5 @@
 package DBLayer;
 
-import ModelLayer.RentInvoice;
-
 import java.sql.SQLException;
 import java.util.List;
 

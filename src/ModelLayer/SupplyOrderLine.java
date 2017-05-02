@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Vlad Mataoanu on 29.03.2017.
  */
-public class SaleOrder {
+public class SupplyOrderLine {
     private String OID;
     private String barcode;
     private int quantity;
@@ -15,7 +15,7 @@ public class SaleOrder {
     private double sale_promotion;
     private String persId;
 
-    public SaleOrder(String OID, String barcode, int quantity, String delivery_status, Date saleDate, Date deliveryDate, double sale_promotion, String persId) {
+    public SupplyOrderLine(String OID, String barcode, int quantity, String delivery_status, Date saleDate, Date deliveryDate, double sale_promotion, String persId) {
         this.OID = OID;
         this.barcode = barcode;
         this.quantity = quantity;

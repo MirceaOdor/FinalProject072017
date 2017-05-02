@@ -8,38 +8,19 @@ public class Product {
     private String name;
     private String barcode;
     private String type;
-    private int salePrice;
-    private int rentPrice;
-    private String country;
-    private int minStock;
+    private double price;
     private int stock;
-    int numar;
+    /**REQ RAW*/
 
     public Product(){
 
     }
 
-    public Product(String name, String barcode, int stock) {
-        this.name = name;
-        this.barcode = barcode;
-        this.stock = stock;
-    }
-
-    public Product(String name, String barcode, String type, String country) {
+    public Product(String name, String barcode, String type, double price, int stock) {
         this.name = name;
         this.barcode = barcode;
         this.type = type;
-        this.country = country;
-    }
-
-    public Product(String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) {
-        this.name = name;
-        this.barcode = barcode;
-        this.type = type;
-        this.salePrice = salePrice;
-        this.rentPrice = rentPrice;
-        this.country = country;
-        this.minStock = minStock;
+        this.price = price;
         this.stock = stock;
     }
 
@@ -67,36 +48,12 @@ public class Product {
         this.type = type;
     }
 
-    public int getSalePrice() {
-        return salePrice;
+    public double getPrice() {
+        return price;
     }
 
-    public void setSalePrice(int salePrice) {
-        this.salePrice = salePrice;
-    }
-
-    public int getRentPrice() {
-        return rentPrice;
-    }
-
-    public void setRentPrice(int rentPrice) {
-        this.rentPrice = rentPrice;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getMinStock() {
-        return minStock;
-    }
-
-    public void setMinStock(int minStock) {
-        this.minStock = minStock;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getStock() {

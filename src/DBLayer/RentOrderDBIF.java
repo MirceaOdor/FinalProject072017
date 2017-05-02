@@ -1,7 +1,5 @@
 package DBLayer;
 
-import ModelLayer.RentOrder;
-
 import java.sql.SQLException;
 import java.util.List;
 

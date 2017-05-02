@@ -7,32 +7,23 @@ public class Person {
     private String id;
     private String f_name;
     private String l_name;
-    private int CPR;
+    private int CNP;
     private String address;
     private String phNr;
     private String city;
-    private int zip;
     private String function;
+    private double wage;
 
-    /*
-      public Person(String id, int CPR, String function) {
-      this.id = id;
-      this.CPR = CPR;
-      this.function = function;
-      */
-
-    public Person(){};
-
-    public Person(String id, String f_name, String l_name, int CPR, String address, String phNr, String city, int zip, String function) {
+    public Person(String id, String f_name, String l_name, int CNP, String address, String phNr, String city, String function, double wage) {
         this.id = id;
         this.f_name = f_name;
         this.l_name = l_name;
-        this.CPR = CPR;
+        this.CNP = CNP;
         this.address = address;
         this.phNr = phNr;
         this.city = city;
-        this.zip = zip;
         this.function = function;
+        this.wage = wage;
     }
 
     public String getId() {
@@ -59,12 +50,12 @@ public class Person {
         this.l_name = l_name;
     }
 
-    public int getCPR() {
-        return CPR;
+    public int getCNP() {
+        return CNP;
     }
 
-    public void setCPR(int CPR) {
-        this.CPR = CPR;
+    public void setCNP(int CNP) {
+        this.CNP = CNP;
     }
 
     public String getAddress() {
@@ -91,19 +82,19 @@ public class Person {
         this.city = city;
     }
 
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
-    }
-
     public String getFunction() {
         return function;
     }
 
     public void setFunction(String function) {
         this.function = function;
+    }
+
+    public double getWage() {
+        return wage;
+    }
+
+    public void setWage(double wage) {
+        this.wage = wage;
     }
 }
