@@ -8,15 +8,15 @@ public class Company {
     private String name;
     private String phNr;
     private String email;
-    private String type;
+    private String companyType;
     private String address;
 
-    public Company(String id, String name, String phNr, String email, String type, String address) {
+    public Company(String id, String name, String phNr, String email, String companyType, String address) {
         this.id = id;
         this.name = name;
         this.phNr = phNr;
         this.email = email;
-        this.type = type;
+        this.companyType = companyType;
         this.address = address;
     }
 
@@ -52,12 +52,12 @@ public class Company {
         this.email = email;
     }
 
-    public String getType() {
-        return type;
+    public String getcompanyType() {
+        return companyType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setcompanyType(String companyType) {
+        this.companyType = companyType;
     }
 
     public String getAddress() {

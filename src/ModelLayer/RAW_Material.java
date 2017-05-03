@@ -5,15 +5,22 @@ package ModelLayer;
  */
 public class RAW_Material {
     private String barcode;
-    private int stock;
-    private int minStock;
     private String name;
+    private String supplierId;
 
-    public RAW_Material(String barcode, int stock, int minStock, String name) {
+    public RAW_Material(String barcode, String name, String supplierId) {
+
         this.barcode = barcode;
-        this.stock = stock;
-        this.minStock = minStock;
         this.name = name;
+        this.supplierId = supplierId;
+    }
+
+    public String getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getBarcode() {
@@ -22,22 +29,6 @@ public class RAW_Material {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public int getMinStock() {
-        return minStock;
-    }
-
-    public void setMinStock(int minStock) {
-        this.minStock = minStock;
     }
 
     public String getName() {

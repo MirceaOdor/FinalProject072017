@@ -2,25 +2,46 @@ package ModelLayer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.*;
 
 /**
  * Created by Vlad Mataoanu on 03.05.2017.
  */
 public class RawMaterialOrder extends Order{
-    private ArrayList<RAW_Material> raw_materials;
+    private String RawMaterialOrderId;
+    private String supplierId;
+    private Stack<String> rawMaterialsBarcodes;
 
-    public RawMaterialOrder(String id, Date deliveryDate, String orderStatus, double totalPrice, String companyId, String type) {
+    public RawMaterialOrder(String id, Date deliveryDate, String orderStatus, double totalPrice, String companyId, String type, String RawMaterialOrderId,String supplierId) {
         super(id, deliveryDate, orderStatus, totalPrice, companyId, type);
-        raw_materials=new ArrayList<>();
+        rawMaterialsBarcodes=new Stack<>();
+        this.RawMaterialOrderId=RawMaterialOrderId;
+        this.supplierId=supplierId;
     }
 
-    public void addRawMaterialsOrdered(RAW_Material raw){
-        raw_materials.add(raw);
+    public void addRawMaterialsOrdered(String rawBarcode){
+        rawMaterialsBarcodes.add(rawBarcode);
     }
 
-    public ArrayList<RAW_Material> getRaw_materials(){return raw_materials;}
+    public Stack<String> getRaw_materials(){return rawMaterialsBarcodes;}
 
-    public void deleteRAWMaterial(RAW_Material raw){
-        raw_materials.remove(raw);
+    public void deleteRAWMaterial(RAW_Material rawBarcode){
+        rawMaterialsBarcodes.remove(rawBarcode);
+    }
+
+    public String getRawMaterialOrderId() {
+        return RawMaterialOrderId;
+    }
+
+    public void setRawMaterialOrderId(String rawMaterialOrderId) {
+        RawMaterialOrderId = rawMaterialOrderId;
+    }
+
+    public String getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(String supplierId) {
+        this.supplierId = supplierId;
     }
 }

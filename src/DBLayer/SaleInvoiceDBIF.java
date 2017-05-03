@@ -1,7 +1,5 @@
 package DBLayer;
 
-import ModelLayer.SaleInvoice;
-
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;

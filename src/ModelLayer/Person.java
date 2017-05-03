@@ -11,10 +11,10 @@ public class Person {
     private String address;
     private String phNr;
     private String city;
-    private String function;
+    private String position;
     private double wage;
 
-    public Person(String id, String f_name, String l_name, int CNP, String address, String phNr, String city, String function, double wage) {
+    public Person(String id, String f_name, String l_name, int CNP, String address, String phNr, String city, String position, double wage) {
         this.id = id;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -22,7 +22,7 @@ public class Person {
         this.address = address;
         this.phNr = phNr;
         this.city = city;
-        this.function = function;
+        this.position = position;
         this.wage = wage;
     }
 
@@ -82,12 +82,12 @@ public class Person {
         this.city = city;
     }
 
-    public String getFunction() {
-        return function;
+    public String getposition() {
+        return position;
     }
 
-    public void setFunction(String function) {
-        this.function = function;
+    public void setposition(String position) {
+        this.position = position;
     }
 
     public double getWage() {

@@ -1,11 +1,8 @@
 package DBLayer;
 
-import ModelLayer.Supplier;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.*;
-import java.util.Spliterator;
 
 /**
  * Created by Admin on 3/29/2017.

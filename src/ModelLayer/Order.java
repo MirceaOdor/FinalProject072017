@@ -11,15 +11,15 @@ public class Order {
     private String orderStatus;
     private double totalPrice;
     private String companyId;
-    private String type;
+    private String companyType;
 
-    public Order(String id, Date deliveryDate, String orderStatus, double totalPrice, String companyId, String type) {
+    public Order(String id, Date deliveryDate, String orderStatus, double totalPrice, String companyId, String companyType) {
         this.id = id;
         this.deliveryDate = deliveryDate;
         this.orderStatus = orderStatus;
         this.totalPrice = totalPrice;
         this.companyId = companyId;
-        this.type = type;
+        this.companyType = companyType;
     }
 
     public String getId() {
@@ -62,11 +62,11 @@ public class Order {
         this.companyId = companyId;
     }
 
-    public String getType() {
-        return type;
+    public String getCompanyType() {
+        return companyType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
     }
 }
