@@ -9,13 +9,17 @@ public class Order {
     private String id;
     private Date deliveryDate;
     private String orderStatus;
-    private double price;
+    private double totalPrice;
+    private String companyId;
+    private String type;
 
-    public Order(String id, Date deliveryDate, String orderStatus, double price) {
+    public Order(String id, Date deliveryDate, String orderStatus, double totalPrice, String companyId, String type) {
         this.id = id;
         this.deliveryDate = deliveryDate;
         this.orderStatus = orderStatus;
-        this.price = price;
+        this.totalPrice = totalPrice;
+        this.companyId = companyId;
+        this.type = type;
     }
 
     public String getId() {
@@ -42,11 +46,27 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public double getPrice() {
-        return price;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

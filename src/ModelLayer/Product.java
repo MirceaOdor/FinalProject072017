@@ -1,5 +1,7 @@
 package ModelLayer;
 
+import java.util.*;
+
 /**
  * Created by Mircea on 27-Mar-17.
  */
@@ -10,7 +12,7 @@ public class Product {
     private String type;
     private double price;
     private int stock;
-    /**REQ RAW*/
+    private ArrayList<RAW_Material> rawMaterials;
 
     public Product(){
 
@@ -22,6 +24,7 @@ public class Product {
         this.type = type;
         this.price = price;
         this.stock = stock;
+        rawMaterials=new ArrayList<>();
     }
 
     public String getName() {
@@ -62,5 +65,9 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public void addRawMaterial(RAW_Material raw){
+        rawMaterials.add(raw);
     }
 }
