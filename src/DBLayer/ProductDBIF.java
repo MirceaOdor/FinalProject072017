@@ -15,5 +15,4 @@ public interface  ProductDBIF {
     boolean update (Product product) throws SQLException;
     boolean delete (String barcode) throws SQLException;
     Product read (String barcode) throws SQLException;
-    Product buildObject(ResultSet rs) throws SQLException;
 }
