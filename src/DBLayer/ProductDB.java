@@ -1,209 +1,113 @@
 package DBLayer;
 
 import ModelLayer.Product;
+import ModelLayer.RAW_Material;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.ResultSet;
 import java.sql.*;
 
-/**
- * Created by Admin on 3/29/2017.
- */
 public class ProductDB implements ProductDBIF {
-    private static ProductDB instance;
+    private static void main(String[] args){
 
-    //singleton
-    public static ProductDB getInstance() {
-        if (instance == null) {
-            instance = new ProductDB();
+        try {
+            Product product = new Product("Nikeuri","152",20,200,10);
+            new ProductDB().delete("152");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return instance;
+        System.out.println("success");
     }
 
-    @Override
-    public Product create(String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) throws SQLException {
-        Product s = new Product(name,barcode, type, salePrice, rentPrice, country, minStock,stock);
-
-        String sql = String.format("INSERT INTO Product (name,barcode, type, salePrice, rentPrice, country, minStock,stock) VALUES "
-                + "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", name,barcode, type, salePrice, rentPrice, country, minStock,stock);
-        try (Connection conn = DBConnection.getInstance().getDBcon();
-             Statement stmt = conn.createStatement()) {
-            stmt.executeUpdate(sql);
+    public boolean create(String name, String barcode, int productionTime, double price, int stock) throws SQLException {
+        try {
+            java.sql.Connection conn = DBConnection.getInstance().getDBcon();
+            //ArrayList<RAW_Material> rawMaterials=product.getRawMaterials();
+            PreparedStatement psttm = conn.prepareStatement("ADD Product SET Name = ?, Barcode = ?, Price = ?, Stock = ?, Production_Time = ?");
+            //psttm.setInt(1,curentQuantity);
+            psttm.setNString(1,name);
+            psttm.setDouble(3,price);
+            psttm.setInt(4,stock);
+            psttm.setInt(5,productionTime);
+            psttm.setNString(2,barcode);
+            psttm.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
             throw e;
         }
-
-        return s;
+        return true;
     }
 
-
-    @Override
-    public Product update(int id, String object, int index) throws SQLException {
-        Product s = new Product(); // it might bug the code ask and fix this
-        String sql;
-        switch (index) {
-            case 1:
-                sql = String.format("UPDATE Product SET name = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-                break;
-            case 2:
-                sql = String.format("UPDATE Product SET barcode = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-                break;
-            case 3:
-                sql = String.format("UPDATE Product SET Type = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            case 4:
-                sql = String.format("UPDATE Product SET SalePrice = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            case 5:
-                sql = String.format("UPDATE Product SET RentPrice = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            case 6:
-                sql = String.format("UPDATE Product SET Country = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            case 7:
-                sql = String.format("UPDATE Product SET minStock = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            case 8:
-                sql = String.format("UPDATE Product SET stock = '%s' WHERE id = '%d'", object, id);
-                try (
-                        Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-                    stmt.executeUpdate(sql);
-                } catch(SQLException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-                break;
-            default:
-                break;
-        }
-
-        return s;
-    }
-
-    @Override
-    public boolean delete(int id) throws SQLException {
-        boolean ok = true;
-        String sql = String.format("DELETE FROM Product WHERE id = '%d'", id);
-        try (
-                Statement stmt = DBConnection.getInstance().getDBcon().createStatement()) {
-            stmt.executeUpdate(sql);
+    public boolean update(Product product) throws SQLException {
+        try {
+            java.sql.Connection conn = DBConnection.getInstance().getDBcon();
+            String barcode=product.getBarcode();
+            String name = product.getName();
+            double price = product.getPrice();
+            int stock = product.getStock();
+            int productionTime=product.getProductionTime();
+            //ArrayList<RAW_Material> rawMaterials=product.getRawMaterials();
+            PreparedStatement psttm = conn.prepareStatement("UPDATE Product SET Name = ?, Price = ?, Stock = ?, Production_Time = ? WHERE barcode = ? ");
+            //psttm.setInt(1,curentQuantity);
+            psttm.setNString(1,name);
+            psttm.setDouble(2,price);
+            psttm.setInt(3,stock);
+            psttm.setInt(4,productionTime);
+            psttm.setNString(5,barcode);
+            psttm.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
             throw e;
         }
-        return ok;
+        return true;
     }
 
-    @Override
-    public Product readById(int id) throws SQLException {
-        Product s = null;
+    public boolean delete(String barcode) throws SQLException {
+        try {
+            java.sql.Connection conn = DBConnection.getInstance().getDBcon();
+            String sql = String.format("Delete from Product where barcode='%s'", barcode);
+            conn.createStatement().executeUpdate(sql);
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }finally {
+            DBConnection.closeConnection();
+        }
+        return true;
+    }
 
-        String sql = "SELECT String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock WHERE ID = " + id;
-
-        try(Statement st = DBConnection.getInstance().getDBcon().createStatement()) {
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.next()) {
-                s = buildObject(rs);// create method buildObject
+    public Product read(String barcode) throws SQLException{
+        Product product = null;
+        try{
+            java.sql.Connection conn = DBConnection.getInstance().getDBcon();
+            String sql = String.format("SELECT * FROM product where barcode=%s",barcode);
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            if (rs.next()){
+                product = buildObject(rs);
             }
-        } catch(SQLException e) {
-            e.printStackTrace();
+        }catch (SQLException e) {
             throw e;
+        }finally{
+            DBConnection.closeConnection();
         }
-
-        return s;
-    }
-
-    @Override
-    public ArrayList<Product> readAll() throws SQLException {
-        ArrayList<Product> s = new ArrayList<>();
-        String sql = "SELECT * FROM Product";
-        try(Statement st = DBConnection.getInstance().getDBcon().createStatement()) {
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()) {
-                s = buildObjects(rs);// create method buildObject
-            }
-        } catch(SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
-        for (Product supp:s) {
-            System.out.println(supp);
-        }
-
-
-        return s;
+        return product;
     }
 
     private Product buildObject(ResultSet rs) throws SQLException{
-        Product s = new Product();
+        Product product;
         try {
-            s.setName(rs.getString("name"));
-            s.setBarcode(rs.getString("barcode"));
-            s.setType(rs.getString("Type"));
-            s.setSalePrice(rs.getInt("SalePrice"));
-            s.setRentPrice(rs.getInt("RentPrice"));
-            s.setCountry(rs.getString("Country"));
-            s.setMinStock(rs.getInt("minStock"));
-            s.setStock(rs.getInt("stock"));
+            String name = rs.getString(1);
+            String barcode = rs.getString(2);
+            double price = rs.getDouble(3);
+            int stock = rs.getInt(4);
+            int productionTime = rs.getInt(5);
+            product = new Product(name,barcode,productionTime,price,stock);
         } catch(SQLException e) {
             e.printStackTrace();
             throw e;
         }
 
-        return s;
+        return product;
     }
-
-    private ArrayList<Product> buildObjects(ResultSet rs) throws SQLException{
-        ArrayList<Product> cs = new ArrayList<>();
-        while(rs.next()) {
-            cs.add(buildObject(rs));
-        }
-        return cs;
-    }
-
 }

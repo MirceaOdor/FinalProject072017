@@ -2,6 +2,7 @@ package DBLayer;
 
 import ModelLayer.Product;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,9 +11,9 @@ import java.util.List;
  */
 public interface  ProductDBIF {
 
-    Product create (String name, String barcode, String type, int salePrice, int rentPrice, String country, int minStock, int stock) throws SQLException;
-    Product update (int id, String object, int index) throws SQLException;
-    boolean delete (int id) throws SQLException;
-    Product readById (int id) throws  SQLException;
-    List<Product> readAll() throws SQLException;
+    boolean create (String name, String barcode, int productionTime, double price, int stock) throws SQLException;
+    boolean update (Product product) throws SQLException;
+    boolean delete (String barcode) throws SQLException;
+    Product read (String barcode) throws SQLException;
+    Product buildObject(ResultSet rs) throws SQLException;
 }
