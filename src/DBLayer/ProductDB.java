@@ -12,7 +12,7 @@ public class ProductDB implements ProductDBIF {
     private static void main(String[] args){
 
         try {
-            Product product = new Product("Nikeuri","152",20,200,10);
+            Product product = new Product("Nikeuri","152",20,200,10, "1");
             new ProductDB().delete("152");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -20,17 +20,17 @@ public class ProductDB implements ProductDBIF {
         System.out.println("success");
     }
 
-    public boolean create(String name, String barcode, int productionTime, double price, int stock) throws SQLException {
+    public boolean create(String name, String barcode, int productionTime, double price, int stock, String requiredMatID) throws SQLException {
         try {
             java.sql.Connection conn = DBConnection.getInstance().getDBcon();
-            //ArrayList<RAW_Material> rawMaterials=product.getRawMaterials();
-            PreparedStatement psttm = conn.prepareStatement("ADD Product SET Name = ?, Barcode = ?, Price = ?, Stock = ?, Production_Time = ?");
+            PreparedStatement psttm = conn.prepareStatement("ADD Product SET Name = ?, Barcode = ?, Price = ?, Stock = ?, Production_Time = ?, RequiredMatID = ?");
             //psttm.setInt(1,curentQuantity);
             psttm.setNString(1,name);
             psttm.setDouble(3,price);
             psttm.setInt(4,stock);
             psttm.setInt(5,productionTime);
             psttm.setNString(2,barcode);
+            psttm.setNString(6,requiredMatID);
             psttm.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class ProductDB implements ProductDBIF {
         Product product = null;
         try{
             java.sql.Connection conn = DBConnection.getInstance().getDBcon();
-            String sql = String.format("SELECT * FROM product where barcode=%s",barcode);
+            String sql = String.format("SELECT * FROM Product where barcode=%s",barcode);
             ResultSet rs = conn.createStatement().executeQuery(sql);
             if (rs.next()){
                 product = buildObject(rs);
@@ -94,7 +94,7 @@ public class ProductDB implements ProductDBIF {
         return product;
     }
 
-    private Product buildObject(ResultSet rs) throws SQLException{
+    private static Product buildObject(ResultSet rs) throws SQLException{
         Product product;
         try {
             String name = rs.getString(1);
@@ -102,7 +102,8 @@ public class ProductDB implements ProductDBIF {
             double price = rs.getDouble(3);
             int stock = rs.getInt(4);
             int productionTime = rs.getInt(5);
-            product = new Product(name,barcode,productionTime,price,stock);
+            String requiredMatID=rs.getString(6);
+            product = new Product(name,barcode,price,stock,productionTime,requiredMatID);
         } catch(SQLException e) {
             e.printStackTrace();
             throw e;

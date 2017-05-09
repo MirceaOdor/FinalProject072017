@@ -12,19 +12,15 @@ public class Product {
     private double price;
     private int stock;
     private int productionTime;
-    private ArrayList<RAW_Material> rawMaterials;
+    private String requiredMatID;
 
-    public Product(){
-
-    }
-
-    public Product(String name, String barcode, int productionTime, double price, int stock) {
+    public Product(String name, String barcode, double price, int stock, int productionTime, String requiredMatID) {
         this.name = name;
         this.barcode = barcode;
-        this.productionTime = productionTime;
         this.price = price;
         this.stock = stock;
-        rawMaterials=new ArrayList<>();
+        this.productionTime = productionTime;
+        this.requiredMatID = requiredMatID;
     }
 
     public String getName() {
@@ -59,10 +55,6 @@ public class Product {
         this.stock = stock;
     }
 
-    public void addRawMaterial(RAW_Material raw){
-        rawMaterials.add(raw);
-    }
-
     public int getProductionTime() {
         return productionTime;
     }
@@ -71,15 +63,11 @@ public class Product {
         this.productionTime = productionTime;
     }
 
-    public void addRequiredRawMaterial(RAW_Material raw){
-        rawMaterials.add(raw);
+    public String getRequiredMatID() {
+        return requiredMatID;
     }
 
-    public void deleteRequiredRawMaterials(RAW_Material raw){
-        rawMaterials.remove(raw);
-    }
-
-    public ArrayList<RAW_Material> getRawMaterials() {
-        return rawMaterials;
+    public void setRequiredMatID(String requiredMatID) {
+        this.requiredMatID = requiredMatID;
     }
 }

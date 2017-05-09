@@ -15,10 +15,10 @@ class DBConnectionTest {
 
 
 
-    private static final String  driver = "jdbc:sqlserver://kraka.ucn.dk:1433;databaseName=dmaj0916_197290";;
-    private static final String  databaseName = ";databaseName=PayStation";
+    private static final String  driver = "jdbc:sqlserver://kraka.ucn.dk:1433;databaseName=dmaj0916_197353";;
+    private static final String  databaseName = ";databaseName=dmaj0916_197353";
 
-    private static String  userName = "; user=dmaj0916_197290";
+    private static String  userName = "; user=dmaj0916_197353";
     private static String password = ";password=Password1!";
 
     private DatabaseMetaData dma;
@@ -90,7 +90,3 @@ class DBConnectionTest {
     }
 
 }//end DbConnection
-
-
-
-}

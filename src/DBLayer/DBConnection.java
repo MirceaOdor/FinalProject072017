@@ -25,7 +25,7 @@ public class DBConnection {
 
 
 
-    private DBConnection()
+    public DBConnection()
     {
         String url = driver + databaseName + userName + password;
 
