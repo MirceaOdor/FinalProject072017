@@ -8,12 +8,11 @@ import java.sql.*;
 public class DBConnection {
 
 
+    public static final String  hostname = "jdbc:sqlserver://kraka.ucn.dk;databaseName=dmaj0916_197353";
+    private static final String  databaseName = "databaseName=dmaj0916_197353";
 
-    private static final String  driver = "jdbc:sqlserver://kraka.ucn.dk:1433;databaseName=dmaj0916_197290";;
-    private static final String  databaseName = ";databaseName=dmaj0916_197290";
-
-    private static String  userName = "; user=dmaj0916_197290";
-    private static String password = ";password=Password1!";
+    public static String  user = "user=dmaj0916_197353";
+    public static String pass = "password=Password1!";
 
     private DatabaseMetaData dma;
     private static Connection con;
@@ -23,7 +22,7 @@ public class DBConnection {
 
 
 
-
+/*
 
     public DBConnection()
     {
@@ -55,6 +54,20 @@ public class DBConnection {
         }//end catch
     }//end  constructor
 
+    public DBConnection(String hostname, String user, String pass){
+
+    }
+*/
+    public static Connection connect() throws Exception {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(hostname, user, pass);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            throw new Exception("Exception occurred while connecting to the database", ex);
+        }
+        return con;
+    }
 
     public static void closeConnection()
     {
