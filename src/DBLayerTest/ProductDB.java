@@ -1,10 +1,8 @@
-package DBLayer;
+package DBLayerTest;
 
 import ModelLayer.Product;
-import ModelLayer.RAW_Material;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.*;
 

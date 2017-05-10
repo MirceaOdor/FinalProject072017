@@ -1,4 +1,4 @@
-package DBLayer;
+package DBLayerTest;
 /**
  * Created by Mircea on 29-Mar-17.
  */

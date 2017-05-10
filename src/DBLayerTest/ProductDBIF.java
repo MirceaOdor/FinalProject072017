@@ -1,10 +1,8 @@
-package DBLayer;
+package DBLayerTest;
 
 import ModelLayer.Product;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by Admin on 3/29/2017.

@@ -1,14 +1,7 @@
-package DBLayer;
+package DBLayerTest;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import ModelLayer.Product;
-import ModelLayer.RAW_Material;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.sql.ResultSet;
-import java.sql.*;
 
 public class ReqRawForProdDB implements ReqRawForProdDBIF {
     public boolean create(String requiredMatID, String RAWBarcode, double quantity) throws SQLException {
