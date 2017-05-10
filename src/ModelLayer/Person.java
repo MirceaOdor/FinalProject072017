@@ -26,6 +26,7 @@ public class Person {
         this.wage = wage;
     }
 
+
     public String getId() {
         return id;
     }
