@@ -1,5 +1,5 @@
 package ControlLayer;
-import DBLayerTest.*;
+import DBLayer.*;
 import ModelLayer.*;
 import java.sql.SQLException;
 /**

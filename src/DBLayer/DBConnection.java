@@ -1,12 +1,10 @@
-package DBLayerTest;
-/**
- * Created by Mircea on 29-Mar-17.
- */
+package DBLayer;
 
 import java.sql.*;
 
-public class DBConnection {
 
+public class DBConnection {
+    //Constants used to get access to the database
 
     public static final String  hostname = "jdbc:sqlserver://kraka.ucn.dk;databaseName=dmaj0916_197353";
     private static final String  databaseName = "databaseName=dmaj0916_197353";
@@ -20,13 +18,10 @@ public class DBConnection {
     // an instance of the class is generated
     private static DBConnection  instance = null;
 
-
-
-/*
-
-    public DBConnection()
+    // the constructor is private to ensure that only one object of this class is created
+    private DBConnection()
     {
-        String url = driver + databaseName + userName + password;
+        String url = hostname + databaseName + user + pass;
 
         try{
             //load of driver
@@ -54,21 +49,7 @@ public class DBConnection {
         }//end catch
     }//end  constructor
 
-    public DBConnection(String hostname, String user, String pass){
-
-    }
-*/
-    public static Connection connect() throws Exception {
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(hostname, user, pass);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            throw new Exception("Exception occurred while connecting to the database", ex);
-        }
-        return con;
-    }
-
+    //closeDb: closes the connection to the database
     public static void closeConnection()
     {
         try{
@@ -101,7 +82,4 @@ public class DBConnection {
         return instance;
     }
 
-
-
-
-}//end JDBCExample
+}//end DbConnection
