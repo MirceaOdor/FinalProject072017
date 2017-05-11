@@ -1,5 +1,5 @@
 
-package DBLayerTest
+package DBLayer
 import ModelLayer.Person;
 import java.sql.SQLException;
 import java.sql.ResultSet;
